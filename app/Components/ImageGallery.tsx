@@ -3,12 +3,11 @@ interface ImageGalleryProps {
 }
 
 const images = [
-  '/photos/1.jpg',
-  '/photos/2.jpg',
-  '/photos/3.jpg',
-'/photos/4.jpg',
-
-
+  "/photos/1.jpg",
+  "/photos/2.jpg",
+  "/photos/3.jpg",
+  "/photos/4.jpg",
+  "/photos/5.jpg",
 ];
 
 export const ImageGallery = ({ onSelect }: ImageGalleryProps) => {
@@ -16,7 +15,7 @@ export const ImageGallery = ({ onSelect }: ImageGalleryProps) => {
     <div className="flex gap-2 p-4 bg-white/10 backdrop-blur-md rounded-lg">
       {images.map((url) => (
         // eslint-disable-next-line @next/next/no-img-element
-        <img 
+        <img
           key={url}
           src={url}
           onClick={() => onSelect(url)}

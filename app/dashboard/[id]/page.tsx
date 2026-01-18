@@ -6,9 +6,27 @@ import Link from 'next/link';
 
 export default function CountdownDetailPage() {
   const params = useParams();
-  const [countdowns] = useLocalStorage<any[]>("test", []);
+  const [countdowns, setCountdowns] = useLocalStorage<any[]>("test", []);
 
-  const currentCountdown = countdowns.find(c => c.id === params.id);
+  const currentIndex = countdowns.findIndex(c => c.id === params.id);
+  const currentCountdown = countdowns[currentIndex];
+
+  const updateBgImage = (newUrl: string) => {
+    if (currentIndex === -1) return;
+
+    const updatedList = [...countdowns];
+    updatedList[currentIndex] = { ...currentCountdown, bgImage: newUrl };
+    setCountdowns(updatedList);
+  };
+
+  const updateDate = (newDate: string) => {
+    if (currentIndex === -1) return;
+      
+    const updatedList = [...countdowns];
+    updatedList[currentIndex] = { ...currentCountdown, targetDate: newDate };
+    setCountdowns(updatedList);
+
+  }
 
   if (!currentCountdown) {
     return (
@@ -29,8 +47,8 @@ export default function CountdownDetailPage() {
         title={currentCountdown.title}
         targetDate={currentCountdown.targetDate}
         bgImage={currentCountdown.bgImage}
-        setTargetDate={() => {}} 
-        setBgImage={() => {}}
+        setTargetDate={updateDate} 
+        setBgImage={updateBgImage}
       />
     </div>
   );

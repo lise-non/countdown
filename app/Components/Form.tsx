@@ -1,8 +1,12 @@
 "use client";
-import { useState } from 'react';
+import { useState } from "react";
 
 interface AddCountdownFormProps {
-  onAdd: (newCounter: { title: string, targetDate: string, bgImage: string }) => void;
+  onAdd: (newCounter: {
+    title: string;
+    targetDate: string;
+    bgImage: string;
+  }) => void;
 }
 
 export const AddCountdownForm = ({ onAdd }: AddCountdownFormProps) => {
@@ -17,7 +21,7 @@ export const AddCountdownForm = ({ onAdd }: AddCountdownFormProps) => {
     onAdd({
       title,
       targetDate: date,
-      bgImage: bg
+      bgImage: bg,
     });
 
     setTitle("");
@@ -25,13 +29,16 @@ export const AddCountdownForm = ({ onAdd }: AddCountdownFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white/10 p-6 rounded-2xl backdrop-blur-md space-y-4 border border-white/20">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-slate-900 p-6 rounded-2xl backdrop-blur-md space-y-4"
+    >
       <h2 className="text-xl font-bold text-white">Nouveau Compteur</h2>
-      
+
       <div>
         <label className="block text-sm text-gray-300">Nom de événement</label>
-        <input 
-          type="text" 
+        <input
+          type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Ex: Vacances, Anniversaire..."
@@ -41,15 +48,15 @@ export const AddCountdownForm = ({ onAdd }: AddCountdownFormProps) => {
 
       <div>
         <label className="block text-sm text-gray-300">Date et Heure</label>
-        <input 
-          type="datetime-local" 
+        <input
+          type="datetime-local"
           value={date}
           onChange={(e) => setDate(e.target.value)}
           className="w-full p-2 rounded bg-gray-800 text-white border border-gray-600 outline-none"
         />
       </div>
 
-      <button 
+      <button
         type="submit"
         className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-lg transition-colors"
       >
